@@ -1,4 +1,4 @@
-package com.personal.secure.app.controller;
+package com.isubtle.secure.app.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
