@@ -25,30 +25,38 @@ public class SecurityConfiguration {
 				/****************************************************************************************************************/
 				/**									         ENABLING SECURITY HEADERS	     	     						   **/ 
 				/****************************************************************************************************************/
-				/*Reference document: https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html*/
-				//Enabling basic authentication provided by Spring Boot
+				/* Reference document: https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html */
+				// Enabling basic authentication provided by Spring Boot
 				.httpBasic(Customizer.withDefaults())
 				.authorizeHttpRequests(auth -> auth
-						//Configuring root API path for enabling the Spring Security Authentication
+						// Configuring root API path for enabling the Spring Security Authentication
 						.requestMatchers("/secure/*")
-        				//Customizing authentication for role based user having credentials configured in application.yml
+        				// Customizing authentication for role based user having credentials configured in application.yml
         	            .hasRole("dev")
 						.anyRequest()
 						.permitAll())
-				//Configuring security header
+				// Configuring security header
 				.headers(headers -> headers
-						//XSS protection enabling
+						// XSS protection enabling
 						.xssProtection(xss -> xss.headerValue(XXssProtectionHeaderWriter.HeaderValue.ENABLED_MODE_BLOCK))
-						//X-Frame-Options: DENY
+						// X-Frame-Options: DENY
 						.frameOptions(FrameOptionsConfig::deny)
-						//Referrer-Policy: strict-origin-when-cross-origin
+						// Referrer-Policy: strict-origin-when-cross-origin
 						.referrerPolicy(referrerPolicy -> referrerPolicy.policy(ReferrerPolicy.STRICT_ORIGIN_WHEN_CROSS_ORIGIN))
+						// Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
 						.httpStrictTransportSecurity(hsts -> hsts.maxAgeInSeconds(31536000).includeSubDomains(true).preload(true))
+						// Cross-Origin-Opener-Policy: same-origin
 						.crossOriginOpenerPolicy(coop -> coop.policy(CrossOriginOpenerPolicy.SAME_ORIGIN))
+						// Cross-Origin-Embedder-Policy: require-corp
 						.crossOriginEmbedderPolicy(coep -> coep.policy(CrossOriginEmbedderPolicy.REQUIRE_CORP))
+						// Cross-Origin-Resource-Policy: same-site
 						.crossOriginResourcePolicy(corp -> corp.policy(CrossOriginResourcePolicy.SAME_SITE))
+						// Server: webserver
 						.addHeaderWriter(new StaticHeadersWriter("Server","webserver"))
+						// X-DNS-Prefetch-Control: off
 						.addHeaderWriter(new StaticHeadersWriter("X-DNS-Prefetch-Control","off"))
+						// Permissions-Policy: geolocation=(), camera=(), microphone=()
+						// Permissions-Policy: interest-cohort=()
 						.permissionsPolicy(permissionsPolicy -> permissionsPolicy
 								.policy("geolocation=(), camera=(), microphone=(), interest-cohort=()"))
 						)
