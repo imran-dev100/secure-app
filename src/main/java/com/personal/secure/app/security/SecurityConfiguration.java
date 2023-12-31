@@ -22,9 +22,9 @@ public class SecurityConfiguration {
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		return http
 				
-				/**************************************************************************************************/
-				/**									 ENABLING SECURITY HEADERS									 **/ 
-				/**************************************************************************************************/
+				/****************************************************************************************************************/
+				/**									         ENABLING SECURITY HEADERS	     	     						   **/ 
+				/****************************************************************************************************************/
 				/*Reference document: https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html*/
 				//Enabling basic authentication provided by Spring Boot
 				.httpBasic(Customizer.withDefaults())
@@ -52,7 +52,7 @@ public class SecurityConfiguration {
 						.permissionsPolicy(permissionsPolicy -> permissionsPolicy
 								.policy("geolocation=(), camera=(), microphone=(), interest-cohort=()"))
 						)
-				/**************************************************************************************************/
+				/****************************************************************************************************************/
 				.build();
 	}
 }
