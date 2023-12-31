@@ -1,4 +1,4 @@
-package com.personal.secure.app.security;
+package com.isubtle.secure.app.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -52,9 +52,9 @@ public class SecurityConfiguration {
 						// Cross-Origin-Resource-Policy: same-site
 						.crossOriginResourcePolicy(corp -> corp.policy(CrossOriginResourcePolicy.SAME_SITE))
 						// Server: webserver
-						.addHeaderWriter(new StaticHeadersWriter("Server","webserver"))
+						.addHeaderWriter(new StaticHeadersWriter("Server", "webserver"))
 						// X-DNS-Prefetch-Control: off
-						.addHeaderWriter(new StaticHeadersWriter("X-DNS-Prefetch-Control","off"))
+						.addHeaderWriter(new StaticHeadersWriter("X-DNS-Prefetch-Control", "off"))
 						// Permissions-Policy: geolocation=(), camera=(), microphone=()
 						// Permissions-Policy: interest-cohort=()
 						.permissionsPolicy(permissionsPolicy -> permissionsPolicy
