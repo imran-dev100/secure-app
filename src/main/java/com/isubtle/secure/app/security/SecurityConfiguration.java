@@ -23,7 +23,7 @@ public class SecurityConfiguration {
 		return http
 				
 				/****************************************************************************************************************/
-				/**									         ENABLING SECURITY HEADERS	     	     						   **/ 
+				/**		                       ENABLING SECURITY HEADERS	     	     			       **/ 
 				/****************************************************************************************************************/
 				/* Reference document: https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html */
 				// Enabling basic authentication provided by Spring Boot
