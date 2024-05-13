@@ -21,7 +21,6 @@ public class SecurityConfiguration {
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		return http
-				
 				/****************************************************************************************************************/
 				/**		                       ENABLING SECURITY HEADERS	     	     			       **/ 
 				/****************************************************************************************************************/
